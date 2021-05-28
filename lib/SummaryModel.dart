@@ -1,9 +1,9 @@
 class SummaryModel {
-  Page page;
-  List<Components> components;
-  List<Incidents> incidents;
-  List<ScheduledMaintenances> scheduledMaintenances;
-  Status status;
+  Page? page;
+  List<Components>? components;
+  List<Incidents>? incidents;
+  List<ScheduledMaintenances>? scheduledMaintenances;
+  Status? status;
 
   SummaryModel(
       {this.page,
@@ -17,19 +17,19 @@ class SummaryModel {
     if (json['components'] != null) {
       components = <Components>[];
       json['components'].forEach((v) {
-        components.add(new Components.fromJson(v));
+        components!.add(new Components.fromJson(v));
       });
     }
     if (json['incidents'] != null) {
       incidents = <Incidents>[];
       json['incidents'].forEach((v) {
-        incidents.add(new Incidents.fromJson(v));
+        incidents!.add(new Incidents.fromJson(v));
       });
     }
     if (json['scheduled_maintenances'] != null) {
       scheduledMaintenances = <ScheduledMaintenances>[];
       json['scheduled_maintenances'].forEach((v) {
-        scheduledMaintenances.add(new ScheduledMaintenances.fromJson(v));
+        scheduledMaintenances!.add(new ScheduledMaintenances.fromJson(v));
       });
     }
     status =
@@ -39,31 +39,31 @@ class SummaryModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.page != null) {
-      data['page'] = this.page.toJson();
+      data['page'] = this.page!.toJson();
     }
     if (this.components != null) {
-      data['components'] = this.components.map((v) => v.toJson()).toList();
+      data['components'] = this.components!.map((v) => v.toJson()).toList();
     }
     if (this.incidents != null) {
-      data['incidents'] = this.incidents.map((v) => v.toJson()).toList();
+      data['incidents'] = this.incidents!.map((v) => v.toJson()).toList();
     }
     if (this.scheduledMaintenances != null) {
       data['scheduled_maintenances'] =
-          this.scheduledMaintenances.map((v) => v.toJson()).toList();
+          this.scheduledMaintenances!.map((v) => v.toJson()).toList();
     }
     if (this.status != null) {
-      data['status'] = this.status.toJson();
+      data['status'] = this.status!.toJson();
     }
     return data;
   }
 }
 
 class Page {
-  String id;
-  String name;
-  String url;
-  String timeZone;
-  String updatedAt;
+  String? id;
+  String? name;
+  String? url;
+  String? timeZone;
+  String? updatedAt;
 
   Page({this.id, this.name, this.url, this.timeZone, this.updatedAt});
 
@@ -87,19 +87,19 @@ class Page {
 }
 
 class Components {
-  String id;
-  String name;
-  String status;
-  String createdAt;
-  String updatedAt;
-  int position;
-  String description;
-  bool showcase;
-  String startDate;
-  String groupId;
-  String pageId;
-  bool group;
-  bool onlyShowIfDegraded;
+  String? id;
+  String? name;
+  String? status;
+  String? createdAt;
+  String? updatedAt;
+  int? position;
+  String? description;
+  bool? showcase;
+  String? startDate;
+  String? groupId;
+  String? pageId;
+  bool? group;
+  bool? onlyShowIfDegraded;
 
   Components(
       {this.id,
@@ -152,21 +152,21 @@ class Components {
 }
 
 class ScheduledMaintenances {
-  String id;
-  String name;
-  String status;
-  String createdAt;
-  String updatedAt;
-  String monitoringAt;
-  String resolvedAt;
-  String impact;
-  String shortlink;
-  String startedAt;
-  String pageId;
-  List<IncidentUpdates> incidentUpdates;
-  List<Components> components;
-  String scheduledFor;
-  String scheduledUntil;
+  String? id;
+  String? name;
+  String? status;
+  String? createdAt;
+  String? updatedAt;
+  String? monitoringAt;
+  String? resolvedAt;
+  String? impact;
+  String? shortlink;
+  String? startedAt;
+  String? pageId;
+  List<IncidentUpdates>? incidentUpdates;
+  List<Components>? components;
+  String? scheduledFor;
+  String? scheduledUntil;
 
   ScheduledMaintenances(
       {this.id,
@@ -200,13 +200,13 @@ class ScheduledMaintenances {
     if (json['incident_updates'] != null) {
       incidentUpdates = <IncidentUpdates>[];
       json['incident_updates'].forEach((v) {
-        incidentUpdates.add(new IncidentUpdates.fromJson(v));
+        incidentUpdates!.add(new IncidentUpdates.fromJson(v));
       });
     }
     if (json['components'] != null) {
       components = <Components>[];
       json['components'].forEach((v) {
-        components.add(new Components.fromJson(v));
+        components!.add(new Components.fromJson(v));
       });
     }
     scheduledFor = json['scheduled_for'];
@@ -228,10 +228,10 @@ class ScheduledMaintenances {
     data['page_id'] = this.pageId;
     if (this.incidentUpdates != null) {
       data['incident_updates'] =
-          this.incidentUpdates.map((v) => v.toJson()).toList();
+          this.incidentUpdates!.map((v) => v.toJson()).toList();
     }
     if (this.components != null) {
-      data['components'] = this.components.map((v) => v.toJson()).toList();
+      data['components'] = this.components!.map((v) => v.toJson()).toList();
     }
     data['scheduled_for'] = this.scheduledFor;
     data['scheduled_until'] = this.scheduledUntil;
@@ -240,17 +240,17 @@ class ScheduledMaintenances {
 }
 
 class IncidentUpdates {
-  String id;
-  String status;
-  String body;
-  String incidentId;
-  String createdAt;
-  String updatedAt;
-  String displayAt;
-  List<AffectedComponents> affectedComponents;
-  bool deliverNotifications;
-  String customTweet;
-  String tweetId;
+  String? id;
+  String? status;
+  String? body;
+  String? incidentId;
+  String? createdAt;
+  String? updatedAt;
+  String? displayAt;
+  List<AffectedComponents>? affectedComponents;
+  bool? deliverNotifications;
+  String? customTweet;
+  String? tweetId;
 
   IncidentUpdates(
       {this.id,
@@ -276,7 +276,7 @@ class IncidentUpdates {
     if (json['affected_components'] != null) {
       affectedComponents = <AffectedComponents>[];
       json['affected_components'].forEach((v) {
-        affectedComponents.add(new AffectedComponents.fromJson(v));
+        affectedComponents!.add(new AffectedComponents.fromJson(v));
       });
     }
     deliverNotifications = json['deliver_notifications'];
@@ -295,7 +295,7 @@ class IncidentUpdates {
     data['display_at'] = this.displayAt;
     if (this.affectedComponents != null) {
       data['affected_components'] =
-          this.affectedComponents.map((v) => v.toJson()).toList();
+          this.affectedComponents!.map((v) => v.toJson()).toList();
     }
     data['deliver_notifications'] = this.deliverNotifications;
     data['custom_tweet'] = this.customTweet;
@@ -305,10 +305,10 @@ class IncidentUpdates {
 }
 
 class AffectedComponents {
-  String code;
-  String name;
-  String oldStatus;
-  String newStatus;
+  String? code;
+  String? name;
+  String? oldStatus;
+  String? newStatus;
 
   AffectedComponents({this.code, this.name, this.oldStatus, this.newStatus});
 
@@ -330,8 +330,8 @@ class AffectedComponents {
 }
 
 class Status {
-  String indicator;
-  String description;
+  String? indicator;
+  String? description;
 
   Status({this.indicator, this.description});
 
@@ -349,17 +349,17 @@ class Status {
 }
 
 class Incidents {
-  String createdAt;
-  String id;
-  String impact;
-  List<IncidentUpdates> incidentUpdates;
-  Null monitoringAt;
-  String name;
-  String pageId;
-  Null resolvedAt;
-  String shortlink;
-  String status;
-  String updatedAt;
+  String? createdAt;
+  String? id;
+  String? impact;
+  List<IncidentUpdates>? incidentUpdates;
+  dynamic monitoringAt;
+  String? name;
+  String? pageId;
+  dynamic resolvedAt;
+  String? shortlink;
+  String? status;
+  String? updatedAt;
 
   Incidents(
       {this.createdAt,
@@ -374,14 +374,14 @@ class Incidents {
         this.status,
         this.updatedAt});
 
-  Incidents.fromJson(Map<String, dynamic> json) {
+  Incidents.fromJson(Map<String?, dynamic> json) {
     createdAt = json['created_at'];
     id = json['id'];
     impact = json['impact'];
     if (json['incident_updates'] != null) {
       incidentUpdates = <IncidentUpdates>[];
       json['incident_updates'].forEach((v) {
-        incidentUpdates.add(new IncidentUpdates.fromJson(v));
+        incidentUpdates!.add(new IncidentUpdates.fromJson(v));
       });
     }
     monitoringAt = json['monitoring_at'];
@@ -400,7 +400,7 @@ class Incidents {
     data['impact'] = this.impact;
     if (this.incidentUpdates != null) {
       data['incident_updates'] =
-          this.incidentUpdates.map((v) => v.toJson()).toList();
+          this.incidentUpdates!.map((v) => v.toJson()).toList();
     }
     data['monitoring_at'] = this.monitoringAt;
     data['name'] = this.name;

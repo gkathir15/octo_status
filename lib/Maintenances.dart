@@ -1,15 +1,15 @@
-class IncidentModel {
+class Maintenances {
   Page? page;
-  List<Incidents>? incidents;
+  List<ScheduledMaintenances>? scheduledMaintenances;
 
-  IncidentModel({this.page, this.incidents});
+  Maintenances({this.page, this.scheduledMaintenances});
 
-  IncidentModel.fromJson(Map<String, dynamic> json) {
+  Maintenances.fromJson(Map<String, dynamic> json) {
     page = json['page'] != null ? new Page.fromJson(json['page']) : null;
-    if (json['incidents'] != null) {
-      incidents = <Incidents>[];
-      json['incidents'].forEach((v) {
-        incidents!.add(new Incidents.fromJson(v));
+    if (json['scheduled_maintenances'] != null) {
+      scheduledMaintenances = <ScheduledMaintenances>[];
+      json['scheduled_maintenances'].forEach((v) {
+        scheduledMaintenances!.add(new ScheduledMaintenances.fromJson(v));
       });
     }
   }
@@ -19,8 +19,9 @@ class IncidentModel {
     if (this.page != null) {
       data['page'] = this.page!.toJson();
     }
-    if (this.incidents != null) {
-      data['incidents'] = this.incidents!.map((v) => v.toJson()).toList();
+    if (this.scheduledMaintenances != null) {
+      data['scheduled_maintenances'] =
+          this.scheduledMaintenances!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -51,7 +52,7 @@ class Page {
   }
 }
 
-class Incidents {
+class ScheduledMaintenances {
   String? createdAt;
   String? id;
   String? impact;
@@ -59,12 +60,14 @@ class Incidents {
   dynamic monitoringAt;
   String? name;
   String? pageId;
-  String? resolvedAt;
+  dynamic resolvedAt;
+  String? scheduledFor;
+  String? scheduledUntil;
   String? shortlink;
   String? status;
   String? updatedAt;
 
-  Incidents(
+  ScheduledMaintenances(
       {this.createdAt,
         this.id,
         this.impact,
@@ -73,11 +76,13 @@ class Incidents {
         this.name,
         this.pageId,
         this.resolvedAt,
+        this.scheduledFor,
+        this.scheduledUntil,
         this.shortlink,
         this.status,
         this.updatedAt});
 
-  Incidents.fromJson(Map<String?, dynamic> json) {
+  ScheduledMaintenances.fromJson(Map<String, dynamic> json) {
     createdAt = json['created_at'];
     id = json['id'];
     impact = json['impact'];
@@ -91,6 +96,8 @@ class Incidents {
     name = json['name'];
     pageId = json['page_id'];
     resolvedAt = json['resolved_at'];
+    scheduledFor = json['scheduled_for'];
+    scheduledUntil = json['scheduled_until'];
     shortlink = json['shortlink'];
     status = json['status'];
     updatedAt = json['updated_at'];
@@ -109,6 +116,8 @@ class Incidents {
     data['name'] = this.name;
     data['page_id'] = this.pageId;
     data['resolved_at'] = this.resolvedAt;
+    data['scheduled_for'] = this.scheduledFor;
+    data['scheduled_until'] = this.scheduledUntil;
     data['shortlink'] = this.shortlink;
     data['status'] = this.status;
     data['updated_at'] = this.updatedAt;

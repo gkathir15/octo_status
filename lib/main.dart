@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:line_icons/line_icon.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
+import 'package:octo_status/IncidentPage.dart';
+import 'package:octo_status/SchedulePage.dart';
 import 'package:octo_status/SummaryPage.dart';
+import 'package:octo_status/WebPage.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,16 +17,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Github Status',
+      darkTheme: ThemeData.dark(),
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'GitHub Status'),
+      home: MyHomePage(key:UniqueKey(),title: 'GitHub Status'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({required Key key, required this.title}) : super(key: key);
 
 
   final String title;
@@ -62,9 +66,9 @@ class _MyHomePageState extends State<MyHomePage> {
               selectedIndex:widget.selectedIndex,
               destinations: [
               NavigationRailDestination(icon:Icon(LineIcons.thermometerFull),selectedIcon: Icon(LineIcons.thermometerFull,color: Theme.of(context).indicatorColor,),
-                  label: Text("Status")),
-              NavigationRailDestination(icon:Icon(LineIcons.book),selectedIcon: Icon(LineIcons.book,color: Theme.of(context).indicatorColor,),label: Text("Summary")),
-              NavigationRailDestination(icon:Icon(LineIcons.frowningFaceWithOpenMouth),selectedIcon: Icon(LineIcons.frowningFaceWithOpenMouth,color: Theme.of(context).indicatorColor,),label: Text("Incidents")),
+                  label: Text("Components")),
+              NavigationRailDestination(icon:Icon(LineIcons.carCrash),selectedIcon: Icon(LineIcons.carCrash,color: Theme.of(context).indicatorColor,),label: Text("Incidents")),
+              NavigationRailDestination(icon:Icon(LineIcons.dizzyFaceAlt),selectedIcon: Icon(LineIcons.dizzyFaceAlt,color: Theme.of(context).indicatorColor,),label: Text("Maintenance")),
             ],
               onDestinationSelected: (int index){
                 setState(() {
@@ -86,9 +90,17 @@ class _MyHomePageState extends State<MyHomePage> {
   }
   Widget masterWidget(int selectedPos)
   {
-    if(true)
+    if(selectedPos==0)
     {
       return SummaryPage();
-    }
+    }else if(selectedPos ==1)
+      {
+        return IncidentPage(key: UniqueKey());
+      }else if(selectedPos==2)
+        {
+          return SchedulePage(key: UniqueKey());
+        }else return SummaryPage();
   }
+
+
 }
