@@ -29,32 +29,15 @@ class _SchedulePageState extends State<SchedulePage> {
   Widget build(BuildContext context) {
 
     fetchSummary();
-
-    return LiquidPullToRefresh(
-      key: UniqueKey(),	// key if you want to add
-      onRefresh: () async{
-        fetchSummary();
-      },	// refresh callback
-      child: widget.schedules!=null?SingleChildScrollView(
-        physics: ScrollPhysics(),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text("Scheduled Maintenances",style: TextStyle(fontSize: 25),),
-            ),
-            ListView.builder(itemBuilder: (BuildContext ctx,int index){
-              return ListTile(leading: widget.schedules!.scheduledMaintenances![index].status=="completed"?Icon(LineIcon.smilingFaceAlt().icon):Icon(LineIcon.frowningFace().icon),
-                subtitle: Text( widget.schedules!.scheduledMaintenances![index].incidentUpdates![0].body??""),
-                title: Text( widget.schedules!.scheduledMaintenances![index].name??""),
-              onTap: (){
-                openWebpage(context,  widget.schedules!.scheduledMaintenances![index].shortlink??"");
-              },);
-            },itemCount: widget.schedules!.scheduledMaintenances!.length,physics: NeverScrollableScrollPhysics(),
-              shrinkWrap: true,),
-          ],
-        ),
-      ):Center(child: CircularProgressIndicator.adaptive(),),		// scroll view
-    );;
+//Text("Scheduled Maintenances",style: TextStyle(fontSize: 25),),
+    return widget.schedules!=null?ListView.builder(itemBuilder: (BuildContext ctx,int index){
+      return ListTile(leading: widget.schedules!.scheduledMaintenances![index].status=="completed"?Icon(LineIcon.smilingFaceAlt().icon):Icon(LineIcon.frowningFace().icon),
+        subtitle: Text( widget.schedules!.scheduledMaintenances![index].incidentUpdates![0].body??""),
+        title: Text( widget.schedules!.scheduledMaintenances![index].name??""),
+        onTap: (){
+          openWebpage(context,  widget.schedules!.scheduledMaintenances![index].shortlink??"");
+        },);
+    },itemCount: widget.schedules!.scheduledMaintenances!.length,
+      shrinkWrap: false,):Center(child: CircularProgressIndicator.adaptive(),);;
   }
 }

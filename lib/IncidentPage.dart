@@ -33,29 +33,15 @@ class _IncidentPageState extends State<IncidentPage> {
 
     fetchSummary();
 
-    return LiquidPullToRefresh(
-      key: UniqueKey(),	// key if you want to add
-      onRefresh: () async{
-        fetchSummary();
-      },	// refresh callback
-      child: widget.incidentsModel!=null?SingleChildScrollView(
-        physics: ScrollPhysics(),
-        child: Column(
-          children: [
-            Container(child: Text("Incidents",style: TextStyle(fontSize: 40),)),
-            ListView.builder(itemBuilder: (BuildContext ctx,int index){
-              return ListTile(leading: widget.incidentsModel!.incidents![index].status=="resolved"?Icon(LineIcon.smilingFaceAlt().icon):Icon(LineIcon.frowningFace().icon),
-                subtitle: Text( widget.incidentsModel!.incidents![index].incidentUpdates![0].body??""),
-                title: Text( widget.incidentsModel!.incidents![index].name??""),
-                onTap: (){
-                  openWebpage(context,widget.incidentsModel!.incidents![index].shortlink??"");
-                },
-              );
-            },itemCount: widget.incidentsModel!.incidents!.length,physics: NeverScrollableScrollPhysics(),
-              shrinkWrap: true,),
-          ],
-        ),
-      ):Center(child: CircularProgressIndicator.adaptive(),),		// scroll view
-    );;
+    return widget.incidentsModel!=null?ListView.builder(itemBuilder: (BuildContext ctx,int index){
+      return ListTile(leading: widget.incidentsModel!.incidents![index].status=="resolved"?Icon(LineIcon.smilingFaceAlt().icon):Icon(LineIcon.frowningFace().icon),
+        subtitle: Text( widget.incidentsModel!.incidents![index].incidentUpdates![0].body??""),
+        title: Text( widget.incidentsModel!.incidents![index].name??""),
+        onTap: (){
+          openWebpage(context,widget.incidentsModel!.incidents![index].shortlink??"");
+        },
+      );
+    },itemCount: widget.incidentsModel!.incidents!.length,
+      shrinkWrap: true,):Center(child: CircularProgressIndicator.adaptive(),);;
   }
 }
