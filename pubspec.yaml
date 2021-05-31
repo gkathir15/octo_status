@@ -77,3 +77,4 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  #flutter build appbundle --obfuscate --no-sound-null-safety --split-debug-info=/octo_status/D:\octo_status

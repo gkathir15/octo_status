@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icon.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:octo_status/IncidentPage.dart';
 import 'package:octo_status/SchedulePage.dart';
 import 'package:octo_status/SummaryPage.dart';
