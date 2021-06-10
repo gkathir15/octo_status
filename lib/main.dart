@@ -56,6 +56,31 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
         centerTitle: true,
         elevation: 5,
+        actions: [
+          InkWell(child:
+          Icon(LineIcons.carCrash),onTap: (){
+            try {
+              List? list;
+              list!.add("dummy");
+            }catch(err)
+            {
+              rethrow;
+            }
+          }
+          ,
+          ),InkWell(child:
+          Icon(LineIcons.cryingFace),onTap: (){
+            List? list;
+            list!.add("dummy");
+          }
+          ,
+          ),InkWell(child:
+          Icon(LineIcons.cryingFace),onTap: (){
+           throw Exception(["this is an Intentonal crash","stack"+StackTrace.current.toString()]);
+          }
+            ,
+          )
+        ],
       ),
       body:
         Row(
