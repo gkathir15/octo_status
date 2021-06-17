@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icon.dart';
 import 'package:octo_status/SummaryModel.dart';
+import 'package:octo_status/helpers.dart';
 
 
 class SummaryPage extends StatefulWidget {
@@ -25,7 +26,7 @@ class _SummaryPageState extends State<SummaryPage> {
 
   fetchSummary () async
   {
-    Response response = await Dio().get(widget.url);
+    Response response = await getDio().get(widget.url);
     widget.summaryModel = SummaryModel.fromJson(response.data);
     if(mounted) {
       setState(() {

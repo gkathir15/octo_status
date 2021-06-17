@@ -15,7 +15,7 @@ class SchedulePage extends StatefulWidget {
 class _SchedulePageState extends State<SchedulePage> {
   fetchSummary () async
   {
-    Response response = await Dio().get(widget.url);
+    Response response = await getDio().get(widget.url);
     widget.schedules = Maintenances.fromJson(response.data);
     if(mounted) {
       setState(() {

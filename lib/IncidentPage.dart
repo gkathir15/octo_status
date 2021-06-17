@@ -18,7 +18,7 @@ class Maintenences {
 class _IncidentPageState extends State<IncidentPage> {
   fetchSummary () async
   {
-    Response response = await Dio().get(widget.url);
+    Response response = await getDio().get(widget.url);
     widget.incidentsModel = IncidentModel.fromJson(response.data);
     if(mounted) {
       setState(() {

@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icon.dart';
 import 'package:line_icons/line_icons.dart';
@@ -5,6 +6,7 @@ import 'package:octo_status/IncidentPage.dart';
 import 'package:octo_status/SchedulePage.dart';
 import 'package:octo_status/SummaryPage.dart';
 import 'package:octo_status/WebPage.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,6 +14,10 @@ void main() {
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+// Initialize Firebase.
+
+
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -75,8 +81,13 @@ class _MyHomePageState extends State<MyHomePage> {
           }
           ,
           ),InkWell(child:
-          Icon(LineIcons.cryingFace),onTap: (){
-           throw Exception(["this is an Intentonal crash","stack"+StackTrace.current.toString()]);
+          Icon(LineIcons.fire),onTap: (){
+            FirebaseCrashlytics.instance.crash();
+          }
+          ,
+          ),InkWell(child:
+          Icon(LineIcons.stackOverflow),onTap: (){
+           throw UnimplementedError("this is an Intentional crash"+"stack"+StackTrace.current.toString());
           }
             ,
           )
@@ -112,6 +123,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
   }
+
+  @override
+  void initState() {
+     Firebase.initializeApp();
+     super.initState();
+  }
+
   Widget masterWidget(int selectedPos)
   {
     if(selectedPos==0)
